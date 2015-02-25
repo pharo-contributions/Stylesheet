@@ -153,6 +153,21 @@ ConfigurationOfStylesheet >> project [
 ConfigurationOfStylesheet >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: #'notDefined'.
+	spec for: #'common' version: '1.0'.
+
+]
+
+{ #category : #versions }
+ConfigurationOfStylesheet >> version10: spec [
+	<version: '1.0' imports: #('0.1-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 1.0'.
+		spec author: 'GuillaumeLarcheveque'.
+		spec timestamp: '2/25/2015 14:49'.
+		spec 
+			package: #'Stylesheet-Core' with: 'Stylesheet-Core-GuillaumeLarcheveque.1';
+			package: #'Stylesheet-Tests' with: 'Stylesheet-Tests-GuillaumeLarcheveque.1'. ].
 
 ]
