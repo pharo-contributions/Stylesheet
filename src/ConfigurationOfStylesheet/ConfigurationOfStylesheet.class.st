@@ -120,6 +120,19 @@ ConfigurationOfStylesheet >> baseline01: spec [
 
 ]
 
+{ #category : #baselines }
+ConfigurationOfStylesheet >> baseline02: spec [
+	<version: '0.2-baseline'>
+
+	spec for: #'common' do: [
+		spec blessing: #'baseline'.
+		spec repository: 'http://smalltalkhub.com/mc/RMoD/Stylesheet/main/'.
+		spec 
+			package: #'Stylesheet-Core';
+			package: #'Stylesheet-Tests'. ].
+
+]
+
 { #category : #accessing }
 ConfigurationOfStylesheet >> customProjectAttributes [
 	 "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
@@ -132,7 +145,7 @@ ConfigurationOfStylesheet >> customProjectAttributes [
 ConfigurationOfStylesheet >> development: spec [
 	<symbolicVersion: #'development'>
 
-	spec for: #'common' version: '0.1-baseline'.
+	spec for: #'common' version: '0.2-baseline'.
 
 ]
 
@@ -159,13 +172,13 @@ ConfigurationOfStylesheet >> stable: spec [
 
 { #category : #versions }
 ConfigurationOfStylesheet >> version10: spec [
-	<version: '1.0' imports: #('0.1-baseline' )>
+	<version: '1.0' imports: #('0.2-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'stable'.
 		spec description: 'version 1.0'.
 		spec author: 'GuillaumeLarcheveque'.
-		spec timestamp: '2/25/2015 14:49'.
+		spec timestamp: '2/25/2015 16:14'.
 		spec 
 			package: #'Stylesheet-Core' with: 'Stylesheet-Core-GuillaumeLarcheveque.1';
 			package: #'Stylesheet-Tests' with: 'Stylesheet-Tests-GuillaumeLarcheveque.1'. ].
