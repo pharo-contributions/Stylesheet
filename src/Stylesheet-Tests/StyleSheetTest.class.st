@@ -1,15 +1,15 @@
 Class {
-	#name : #PDFStyleSheetTest,
+	#name : #StyleSheetTest,
 	#superclass : #TestCase,
 	#category : #'Stylesheet-Tests'
 }
 
 { #category : #tests }
-PDFStyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
+StyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 	| first second result |
-	first := PDFStyleSheet new.
+	first := StyleSheet new.
 	first textColor: #firstColor.
-	second := PDFStyleSheet new.
+	second := StyleSheet new.
 	second textColor: #secondColor.
 	result := first + second.
 	self assert: (first get: #textColor) equals: #firstColor.
@@ -18,9 +18,9 @@ PDFStyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 ]
 
 { #category : #tests }
-PDFStyleSheetTest >> testSubstyleAttributes [
+StyleSheetTest >> testSubstyleAttributes [
 	| base |
-	base := PDFStyleSheet new.
+	base := StyleSheet new.
 	base at: #textColor put: #red.
 	base > #sub at: #textColor put: #green.
 	base > #sub > #subsub at: #textColor put: #blue.
@@ -30,9 +30,9 @@ PDFStyleSheetTest >> testSubstyleAttributes [
 ]
 
 { #category : #tests }
-PDFStyleSheetTest >> testSubstyleCreation [
+StyleSheetTest >> testSubstyleCreation [
 	| base sub |
-	base := PDFStyleSheet new.
+	base := StyleSheet new.
 	sub := base > #sub.
 	self assert: sub equals: base > #sub
 ]
