@@ -17,7 +17,7 @@ substyles
 
 "
 Class {
-	#name : #PDFStyleSheet,
+	#name : #StyleSheet,
 	#superclass : #Object,
 	#instVars : [
 		'attributes',
@@ -27,7 +27,7 @@ Class {
 }
 
 { #category : #'initialize-release' }
-PDFStyleSheet class >> default [
+StyleSheet class >> default [
 	| default |
 	default:= self new 
 		at: #textColor put: (PDFColor r: 0 g: 0 b: 0); 
@@ -51,7 +51,7 @@ PDFStyleSheet class >> default [
 ]
 
 { #category : #action }
-PDFStyleSheet >> + aStyleSheet [
+StyleSheet >> + aStyleSheet [
 	| newStyleSheet |
 	newStyleSheet := self copy.
 	aStyleSheet attributes keysAndValuesDo: [:aKey :aValue | newStyleSheet attributes at: aKey put: aValue ].
@@ -61,56 +61,56 @@ PDFStyleSheet >> + aStyleSheet [
 ]
 
 { #category : #accessing }
-PDFStyleSheet >> > aSymbol [
-	^ self substyles at: aSymbol ifAbsentPut: [ PDFStyleSheet new ]
+StyleSheet >> > aSymbol [
+	^ self substyles at: aSymbol ifAbsentPut: [ StyleSheet new ]
 ]
 
 { #category : #private }
-PDFStyleSheet >> at: anAttribute put: aValue [
+StyleSheet >> at: anAttribute put: aValue [
 	attributes at: anAttribute put: aValue 
 ]
 
 { #category : #accessing }
-PDFStyleSheet >> attributes [
+StyleSheet >> attributes [
 	^ attributes
 ]
 
 { #category : #private }
-PDFStyleSheet >> get: anAttribute [
+StyleSheet >> get: anAttribute [
 	^ attributes at: anAttribute
 ]
 
 { #category : #'initialize-release' }
-PDFStyleSheet >> initialize [
+StyleSheet >> initialize [
 	super initialize.
 	attributes := Dictionary new.
 	self initializeSubstyles.
 ]
 
 { #category : #'initialize-release' }
-PDFStyleSheet >> initializeSubstyles [
+StyleSheet >> initializeSubstyles [
 	substyles := Dictionary new.
 	substyles at: #default put: self
 ]
 
 { #category : #copying }
-PDFStyleSheet >> postCopy [
+StyleSheet >> postCopy [
 	attributes := attributes copy.
 	substyles := substyles copy.
 	substyles at: #default put: self.
 ]
 
 { #category : #accessing }
-PDFStyleSheet >> substyles [
+StyleSheet >> substyles [
 	^ substyles
 ]
 
 { #category : #accessing }
-PDFStyleSheet >> substyles: anObject [
+StyleSheet >> substyles: anObject [
 	substyles := anObject
 ]
 
 { #category : #copying }
-PDFStyleSheet >> withoutSubstyles [
+StyleSheet >> withoutSubstyles [
 	^ self copy initializeSubstyles
 ]
