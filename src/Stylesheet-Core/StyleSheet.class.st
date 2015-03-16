@@ -80,6 +80,11 @@ StyleSheet >> get: anAttribute [
 	^ attributes at: anAttribute
 ]
 
+{ #category : #testing }
+StyleSheet >> includesAnySubstyles: aCollectionOfSubstyles [
+	^ self substyles includesAny: aCollectionOfSubstyles
+]
+
 { #category : #'initialize-release' }
 StyleSheet >> initialize [
 	super initialize.
