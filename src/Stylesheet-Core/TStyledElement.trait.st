@@ -43,6 +43,12 @@ TStyledElement >> initializeStyle [
 ]
 
 { #category : #style }
+TStyledElement >> style: aStyleSymbol [
+	self assert: aStyleSymbol isSymbol description: 'A style must be a ByteSymbol'. 
+	self styles: { aStyleSymbol }
+]
+
+{ #category : #style }
 TStyledElement >> styleSheet [
 	^ self  explicitRequirement
 ]
