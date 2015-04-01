@@ -35,11 +35,24 @@ TStyledElement >> defaultStyle [
 	^ self  explicitRequirement
 ]
 
+{ #category : #'as yet unclassified' }
+TStyledElement >> effectiveStyleSheet [
+	Halt now.
+	^ self
+		buildCompositeStyleSheetFrom:
+			(self parent ifNil: [ self styleSheetClass new ] ifNotNil: [ self parent effectiveStyleSheet ])
+]
+
 { #category : #initialization }
 TStyledElement >> initializeStyle [
-	self styleSheet: StyleSheet new.
+	self styleSheet: self styleSheetClass new.
 	self styles: OrderedCollection new.
 	self addStyle: self defaultStyle
+]
+
+{ #category : #style }
+TStyledElement >> parent [
+	^ self  explicitRequirement
 ]
 
 { #category : #style }
@@ -56,6 +69,11 @@ TStyledElement >> styleSheet [
 { #category : #style }
 TStyledElement >> styleSheet: aStyleSheet [
 	^ self  explicitRequirement
+]
+
+{ #category : #initialization }
+TStyledElement >> styleSheetClass [
+	^ StyleSheet 
 ]
 
 { #category : #style }

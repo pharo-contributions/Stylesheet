@@ -62,7 +62,7 @@ StyleSheet >> + aStyleSheet [
 
 { #category : #accessing }
 StyleSheet >> > aSymbol [
-	^ self substyles at: aSymbol ifAbsentPut: [ StyleSheet new ]
+	^ self substyles at: aSymbol ifAbsentPut: [ self class new ]
 ]
 
 { #category : #private }
