@@ -8,9 +8,9 @@ Class {
 StyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 	| first second result |
 	first := StyleSheet new.
-	first textColor: #firstColor.
+	first at: #textColor put: #firstColor.
 	second := StyleSheet new.
-	second textColor: #secondColor.
+	second at: #textColor put: #secondColor.
 	result := first + second.
 	self assert: (first get: #textColor) equals: #firstColor.
 	self assert: (second get: #textColor) equals: #secondColor.
