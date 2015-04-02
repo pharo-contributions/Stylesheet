@@ -37,7 +37,6 @@ TStyledElement >> defaultStyle [
 
 { #category : #'as yet unclassified' }
 TStyledElement >> effectiveStyleSheet [
-	Halt now.
 	^ self
 		buildCompositeStyleSheetFrom:
 			(self parent ifNil: [ self styleSheetClass new ] ifNotNil: [ self parent effectiveStyleSheet ])
