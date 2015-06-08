@@ -21,7 +21,7 @@ TStyledElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 
 	"If we found at least one matching style we drop all substyles (we will then add only the matching ones)"
 
-	self styleSheet customizeWith: self.
+	self styleSheet customizeWith: self referencedElement.
 
 	^ (self styles
 		inject:
