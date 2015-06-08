@@ -18,6 +18,23 @@ StyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 ]
 
 { #category : #tests }
+StyleSheetTest >> testCustomizeWithoutDynamicCustomization [
+	| styleSheet |
+	styleSheet := StyleSheet new.
+	styleSheet customizeWith: #fakeEntity.
+	
+]
+
+{ #category : #tests }
+StyleSheetTest >> testDynamicCustomization [
+	| styleSheet |
+	styleSheet := StyleSheet new.
+	styleSheet dynamicCustomization: [ :aStyleSheet :styledElement | aStyleSheet at: #color put: Color black ].
+	styleSheet customizeWith: #fakeEntity.
+	self assert: (styleSheet get: #color) equals: Color black.
+]
+
+{ #category : #tests }
 StyleSheetTest >> testSubstyleAttributes [
 	| base |
 	base := StyleSheet new.
