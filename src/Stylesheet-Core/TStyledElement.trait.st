@@ -21,6 +21,8 @@ TStyledElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 
 	"If we found at least one matching style we drop all substyles (we will then add only the matching ones)"
 
+	self styleSheet customizeWith: self.
+
 	^ (self styles
 		inject:
 			((aStyleSheet includesAnySubstyles: self styles)
@@ -52,6 +54,11 @@ TStyledElement >> initializeStyle [
 { #category : #style }
 TStyledElement >> parent [
 	^ self  explicitRequirement
+]
+
+{ #category : #'as yet unclassified' }
+TStyledElement >> referencedElement [
+	^ self
 ]
 
 { #category : #style }

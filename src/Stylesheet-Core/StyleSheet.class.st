@@ -21,7 +21,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'attributes',
-		'substyles'
+		'substyles',
+		'dynamicCustomization'
 	],
 	#category : #'Stylesheet-Core'
 }
@@ -73,6 +74,21 @@ StyleSheet >> at: anAttribute put: aValue [
 { #category : #accessing }
 StyleSheet >> attributes [
 	^ attributes
+]
+
+{ #category : #customize }
+StyleSheet >> customizeWith: aStyledElement [ 
+	self dynamicCustomization ifNotNil: [ self dynamicCustomization cull: self cull: aStyledElement ]
+]
+
+{ #category : #accessing }
+StyleSheet >> dynamicCustomization [
+	^ dynamicCustomization
+]
+
+{ #category : #accessing }
+StyleSheet >> dynamicCustomization: anObject [
+	dynamicCustomization := anObject
 ]
 
 { #category : #private }
