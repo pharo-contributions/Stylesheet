@@ -98,7 +98,7 @@ StyleSheet >> get: anAttribute [
 
 { #category : #testing }
 StyleSheet >> includesAnySubstyles: aCollectionOfSubstyles [
-	^ self substyles includesAny: aCollectionOfSubstyles
+	^ self substyles keys includesAny: aCollectionOfSubstyles 
 ]
 
 { #category : #'initialize-release' }
