@@ -1,8 +1,16 @@
 Class {
 	#name : #StyleSheetTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'styleSheet'
+	],
 	#category : #'Stylesheet-Tests'
 }
+
+{ #category : #tests }
+StyleSheetTest >> setUp [
+	styleSheet := StyleSheet new
+]
 
 { #category : #tests }
 StyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
@@ -19,37 +27,38 @@ StyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 
 { #category : #tests }
 StyleSheetTest >> testCustomizeWithoutDynamicCustomization [
-	| styleSheet |
-	styleSheet := StyleSheet new.
 	styleSheet customizeWith: #fakeEntity.
 	
 ]
 
 { #category : #tests }
 StyleSheetTest >> testDynamicCustomization [
-	| styleSheet |
-	styleSheet := StyleSheet new.
 	styleSheet dynamicCustomization: [ :aStyleSheet :styledElement | aStyleSheet at: #color put: Color black ].
 	styleSheet customizeWith: #fakeEntity.
 	self assert: (styleSheet get: #color) equals: Color black.
 ]
 
 { #category : #tests }
+StyleSheetTest >> testIncludesAnySubstyles [
+	self deny: (styleSheet includesAnySubstyles: #(#sub)).
+	styleSheet > #sub.
+	self assert: (styleSheet includesAnySubstyles: #(#sub)).
+	
+]
+
+{ #category : #tests }
 StyleSheetTest >> testSubstyleAttributes [
-	| base |
-	base := StyleSheet new.
-	base at: #textColor put: #red.
-	base > #sub at: #textColor put: #green.
-	base > #sub > #subsub at: #textColor put: #blue.
-	self assert:( base get: #textColor ) equals: #red.
-	self assert:( base > #sub get: #textColor ) equals: #green.
-	self assert:( base > #sub > #subsub get: #textColor ) equals: #blue.
+	styleSheet at: #textColor put: #red.
+	styleSheet > #sub at: #textColor put: #green.
+	styleSheet > #sub > #subsub at: #textColor put: #blue.
+	self assert:( styleSheet get: #textColor ) equals: #red.
+	self assert:( styleSheet > #sub get: #textColor ) equals: #green.
+	self assert:( styleSheet > #sub > #subsub get: #textColor ) equals: #blue.
 ]
 
 { #category : #tests }
 StyleSheetTest >> testSubstyleCreation [
-	| base sub |
-	base := StyleSheet new.
-	sub := base > #sub.
-	self assert: sub equals: base > #sub
+	|  sub |
+	sub := styleSheet > #sub.
+	self assert: sub equals: styleSheet > #sub
 ]
