@@ -76,6 +76,11 @@ StyleSheet >> attributes [
 	^ attributes
 ]
 
+{ #category : #copying }
+StyleSheet >> copyWithout: aCollectionOfProperties [
+	^ self copy removeAll: aCollectionOfProperties; yourself
+]
+
 { #category : #customize }
 StyleSheet >> customizeWith: aStyledElement [ 
 	self dynamicCustomization ifNotNil: [ self dynamicCustomization cull: self cull: aStyledElement ]
@@ -119,6 +124,16 @@ StyleSheet >> postCopy [
 	attributes := attributes copy.
 	substyles := substyles copy.
 	substyles at: #default put: self.
+]
+
+{ #category : #removing }
+StyleSheet >> remove: anAttribute [
+	attributes removeKey: anAttribute
+]
+
+{ #category : #removing }
+StyleSheet >> removeAll: aCollectionOfAttributes [
+	aCollectionOfAttributes do: [:anAttribute | self remove: anAttribute]
 ]
 
 { #category : #accessing }
