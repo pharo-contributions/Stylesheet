@@ -26,6 +26,16 @@ StyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 ]
 
 { #category : #tests }
+StyleSheetTest >> testCopyWithout [
+	| sheet copy |
+	sheet := StyleSheet new.
+	sheet at: #textColor put: #color.
+	copy := sheet copyWithout: #(textColor).
+	self assert: (sheet get: #textColor) equals: #color.
+	self should: [copy get: #textColor] raise: NotFound
+]
+
+{ #category : #tests }
 StyleSheetTest >> testCustomizeWithoutDynamicCustomization [
 	styleSheet customizeWith: #fakeEntity.
 	
