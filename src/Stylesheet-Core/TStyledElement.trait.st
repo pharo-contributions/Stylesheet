@@ -22,14 +22,13 @@ TStyledElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 	"If we found at least one matching style we drop all substyles (we will then add only the matching ones)"
 
 	self styleSheet customizeWith: self referencedElement.
-
 	^ (self styles
-		inject:
-			((aStyleSheet includesAnySubstyles: self styles)
-				ifTrue: [ aStyleSheet withoutSubstyles ]
-				ifFalse: [ aStyleSheet ])
-		into: [ :returnedStyleSheet :aStyle | aStyleSheet substyles at: aStyle ifPresent: [ :subStyle | returnedStyleSheet + subStyle ] ifAbsent: [ returnedStyleSheet ] ])
-		+ self styleSheet	"the stylesheet of the element is always the prioritary one"
+		inject: aStyleSheet
+		into: [ :returnedStyleSheet :aStyle | 
+			aStyleSheet substyles
+				at: aStyle
+				ifPresent: [ :subStyle | returnedStyleSheet + subStyle ]
+				ifAbsent: [ returnedStyleSheet ] ]) + self styleSheet	"the stylesheet of the element is always the prioritary one"
 ]
 
 { #category : #style }
