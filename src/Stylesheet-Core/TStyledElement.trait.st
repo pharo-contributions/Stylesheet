@@ -16,6 +16,12 @@ TStyledElement >> addStyle: aStyleSymbol [
 ]
 
 { #category : #style }
+TStyledElement >> addStyle: aStyleSymbol if: condition [
+	condition value
+		ifTrue: [ self addStyle: aStyleSymbol ]
+]
+
+{ #category : #style }
 TStyledElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 	"realise the addition (ordered from less priority to higher) of differents styleSheet. The first one come from the upper elements. The second one is the context specific to the element. The third one is defined by the user only for this element and so is prioritary"
 
