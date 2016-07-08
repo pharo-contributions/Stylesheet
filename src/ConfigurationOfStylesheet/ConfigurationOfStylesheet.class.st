@@ -166,7 +166,7 @@ ConfigurationOfStylesheet >> project [
 ConfigurationOfStylesheet >> stable: spec [
 	<symbolicVersion: #'stable'>
 
-	spec for: #'common' version: '1.1'.
+	spec for: #'common' version: '1.2'.
 
 ]
 
@@ -196,6 +196,21 @@ ConfigurationOfStylesheet >> version11: spec [
 		spec timestamp: '2/15/2016 18:21'.
 		spec 
 			package: #'Stylesheet-Core' with: 'Stylesheet-Core-GuillaumeLarcheveque.10';
+			package: #'Stylesheet-Tests' with: 'Stylesheet-Tests-GuillaumeLarcheveque.6'. ].
+
+]
+
+{ #category : #versions }
+ConfigurationOfStylesheet >> version12: spec [
+	<version: '1.2' imports: #('0.2-baseline' )>
+
+	spec for: #'common' do: [
+		spec blessing: #'stable'.
+		spec description: 'version 1.2'.
+		spec author: 'GuillaumeLarcheveque'.
+		spec timestamp: '7/8/2016 10:48'.
+		spec 
+			package: #'Stylesheet-Core' with: 'Stylesheet-Core-GuillaumeLarcheveque.13';
 			package: #'Stylesheet-Tests' with: 'Stylesheet-Tests-GuillaumeLarcheveque.6'. ].
 
 ]
