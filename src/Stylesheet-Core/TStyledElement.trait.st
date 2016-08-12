@@ -67,9 +67,21 @@ TStyledElement >> referencedElement [
 ]
 
 { #category : #style }
+TStyledElement >> removeStyle: aStyleSymbol [
+	self assert: aStyleSymbol isSymbol description: 'A style must be a ByteSymbol'.
+	self styles
+		remove: aStyleSymbol
+		ifAbsent: [ 
+			"It is allowed to ask the removing of a non present style"
+			 ]
+]
+
+{ #category : #style }
 TStyledElement >> style: aStyleSymbol [
-	self assert: aStyleSymbol isSymbol description: 'A style must be a ByteSymbol'. 
-	self styles: { aStyleSymbol }
+	self assert: aStyleSymbol isSymbol description: 'A style must be a ByteSymbol'.
+	self styles
+		removeAll;
+		add: aStyleSymbol
 ]
 
 { #category : #style }
