@@ -25,8 +25,14 @@ To add Stylesheet to your baseline just add this:
 
 Note that you can replace the #master by another branch as #development or a tag as #v1.0.0, #v1.? or #v1.2.? .
 
-## Projects using Stylesheet:
+## Projects using Stylesheet
 
 - pharo-contributions/Artefact
 - TelescopeSt/Telescope
 - DuneSt/ChartJs
+
+## Smalltalk versions compatibility
+
+| Version 	| Compatible Pharo versions 		|
+|----------	|---------------------------		|
+| 1.x.x    	| Pharo 61, 70, 80, 90				|
