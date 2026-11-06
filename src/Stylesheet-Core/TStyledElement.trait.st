@@ -5,23 +5,24 @@ YOU HAVE TO SEND #initializeStyle IN YOUR #initialize method and also to define 
 
 "
 Trait {
-	#name : #TStyledElement,
-	#category : #'Stylesheet-Core'
+	#name : 'TStyledElement',
+	#category : 'Stylesheet-Core',
+	#package : 'Stylesheet-Core'
 }
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> addStyle: aStyleSymbol [
 	self assert: aStyleSymbol isSymbol description: 'A style must be a ByteSymbol'. 
 	self styles addLast: aStyleSymbol
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> addStyle: aStyleSymbol if: condition [
 	condition value
 		ifTrue: [ self addStyle: aStyleSymbol ]
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 	"realise the addition (ordered from less priority to higher) of differents styleSheet. The first one come from the upper elements. The second one is the context specific to the element. The third one is defined by the user only for this element and so is prioritary"
 
@@ -37,36 +38,36 @@ TStyledElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 				ifAbsent: [ returnedStyleSheet ] ]) + self styleSheet	"the stylesheet of the element is always the prioritary one"
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> defaultStyle [
 	^ self  explicitRequirement
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TStyledElement >> effectiveStyleSheet [
 	^ self
 		buildCompositeStyleSheetFrom:
 			(self parent ifNil: [ self styleSheetClass new ] ifNotNil: [ self parent effectiveStyleSheet ])
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TStyledElement >> initializeStyle [
 	self styleSheet: self styleSheetClass new.
 	self styles: OrderedCollection new.
 	self addStyle: self defaultStyle
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> parent [
 	^ self  explicitRequirement
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 TStyledElement >> referencedElement [
 	^ self
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> removeStyle: aStyleSymbol [
 	self assert: aStyleSymbol isSymbol description: 'A style must be a ByteSymbol'.
 	self styles
@@ -76,7 +77,7 @@ TStyledElement >> removeStyle: aStyleSymbol [
 			 ]
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> style: aStyleSymbol [
 	self assert: aStyleSymbol isSymbol description: 'A style must be a ByteSymbol'.
 	self styles
@@ -84,27 +85,27 @@ TStyledElement >> style: aStyleSymbol [
 		add: aStyleSymbol
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> styleSheet [
 	^ self  explicitRequirement
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> styleSheet: aStyleSheet [
 	^ self  explicitRequirement
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 TStyledElement >> styleSheetClass [
 	^ StyleSheet 
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> styles [
 	^ self  explicitRequirement
 ]
 
-{ #category : #style }
+{ #category : 'style' }
 TStyledElement >> styles: aCollectionOfStyles [
 	^ self  explicitRequirement
 ]

@@ -1,1 +1,1 @@
-Package { #name : #'Stylesheet-Tests' }
+Package { #name : 'Stylesheet-Tests' }

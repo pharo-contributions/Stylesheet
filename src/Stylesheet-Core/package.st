@@ -1,1 +1,1 @@
-Package { #name : #'Stylesheet-Core' }
+Package { #name : 'Stylesheet-Core' }
