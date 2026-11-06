@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfStylesheet }
+Package { #name : 'BaselineOfStylesheet' }
