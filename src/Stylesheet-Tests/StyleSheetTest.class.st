@@ -1,18 +1,19 @@
 Class {
-	#name : #StyleSheetTest,
-	#superclass : #TestCase,
+	#name : 'StyleSheetTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'styleSheet'
 	],
-	#category : #'Stylesheet-Tests'
+	#category : 'Stylesheet-Tests',
+	#package : 'Stylesheet-Tests'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 StyleSheetTest >> setUp [
 	styleSheet := StyleSheet new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 StyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 	| first second result |
 	first := StyleSheet new.
@@ -25,7 +26,7 @@ StyleSheetTest >> testAdditionDoNotModifyFirstStyleSheet [
 	self assert: (result get: #textColor) equals: #secondColor
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 StyleSheetTest >> testCopyWithout [
 	| sheet copy |
 	sheet := StyleSheet new.
@@ -35,20 +36,20 @@ StyleSheetTest >> testCopyWithout [
 	self should: [copy get: #textColor] raise: NotFound
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 StyleSheetTest >> testCustomizeWithoutDynamicCustomization [
 	styleSheet customizeWith: #fakeEntity.
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 StyleSheetTest >> testDynamicCustomization [
 	styleSheet dynamicCustomization: [ :aStyleSheet :styledElement | aStyleSheet at: #color put: Color black ].
 	styleSheet customizeWith: #fakeEntity.
 	self assert: (styleSheet get: #color) equals: Color black.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 StyleSheetTest >> testIncludesAnySubstyles [
 	self deny: (styleSheet includesAnySubstyles: #(#sub)).
 	styleSheet > #sub.
@@ -56,7 +57,7 @@ StyleSheetTest >> testIncludesAnySubstyles [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 StyleSheetTest >> testSubstyleAttributes [
 	styleSheet at: #textColor put: #red.
 	styleSheet > #sub at: #textColor put: #green.
@@ -66,7 +67,7 @@ StyleSheetTest >> testSubstyleAttributes [
 	self assert:( styleSheet > #sub > #subsub get: #textColor ) equals: #blue.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 StyleSheetTest >> testSubstyleCreation [
 	|  sub |
 	sub := styleSheet > #sub.

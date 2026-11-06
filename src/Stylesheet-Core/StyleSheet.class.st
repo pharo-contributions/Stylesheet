@@ -17,17 +17,18 @@ substyles
 
 "
 Class {
-	#name : #StyleSheet,
-	#superclass : #Object,
+	#name : 'StyleSheet',
+	#superclass : 'Object',
 	#instVars : [
 		'attributes',
 		'substyles',
 		'dynamicCustomization'
 	],
-	#category : #'Stylesheet-Core'
+	#category : 'Stylesheet-Core',
+	#package : 'Stylesheet-Core'
 }
 
-{ #category : #action }
+{ #category : 'action' }
 StyleSheet >> + aStyleSheet [
 	| newStyleSheet |
 	newStyleSheet := self copy.
@@ -37,92 +38,92 @@ StyleSheet >> + aStyleSheet [
 	^ newStyleSheet
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StyleSheet >> > aSymbol [
 	^ self substyles at: aSymbol ifAbsentPut: [ self class new ]
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 StyleSheet >> at: anAttribute put: aValue [
 	attributes at: anAttribute put: aValue 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StyleSheet >> attributes [
 	^ attributes
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StyleSheet >> copyWithout: aCollectionOfProperties [
 	^ self copy removeAll: aCollectionOfProperties; yourself
 ]
 
-{ #category : #customize }
+{ #category : 'customize' }
 StyleSheet >> customizeWith: aStyledElement [ 
 	self dynamicCustomization ifNotNil: [ self dynamicCustomization cull: self cull: aStyledElement ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StyleSheet >> dynamicCustomization [
 	^ dynamicCustomization
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StyleSheet >> dynamicCustomization: anObject [
 	dynamicCustomization := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 StyleSheet >> get: anAttribute [
 	^ attributes at: anAttribute
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 StyleSheet >> includesAnySubstyles: aCollectionOfSubstyles [
 	^ self substyles keys includesAny: aCollectionOfSubstyles 
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StyleSheet >> initialize [
 	super initialize.
 	attributes := Dictionary new.
 	self initializeSubstyles.
 ]
 
-{ #category : #'initialize-release' }
+{ #category : 'initialize-release' }
 StyleSheet >> initializeSubstyles [
 	substyles := Dictionary new.
 	substyles at: #default put: self
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StyleSheet >> postCopy [
 	attributes := attributes copy.
 	substyles := substyles copy.
 	substyles at: #default put: self.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 StyleSheet >> remove: anAttribute [
 	attributes removeKey: anAttribute
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 StyleSheet >> removeAll: aCollectionOfAttributes [
 	aCollectionOfAttributes do: [:anAttribute | self remove: anAttribute]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StyleSheet >> substyles [
 	^ substyles
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 StyleSheet >> substyles: anObject [
 	substyles := anObject
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 StyleSheet >> withoutSubstyles [
 	^ self copy initializeSubstyles
 ]
