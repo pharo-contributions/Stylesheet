@@ -30,10 +30,12 @@ Class {
 
 { #category : 'action' }
 StyleSheet >> + aStyleSheet [
+	"Answer a new style sheet with the attributes and the substyles of the receiver and of the argument, which has the priority. The substyles of the argument are copied. Its default substyle is the argument itself, and the one of the result is the result itself: it is not copied for nothing"
+
 	| newStyleSheet |
 	newStyleSheet := self copy.
-	aStyleSheet attributes keysAndValuesDo: [:aKey :aValue | newStyleSheet attributes at: aKey put: aValue ].
-	aStyleSheet substyles keysAndValuesDo: [:aKey :aSubStyleSheet | newStyleSheet substyles at: aKey put: aSubStyleSheet copy ].
+	aStyleSheet attributes keysAndValuesDo: [ :aKey :aValue | newStyleSheet attributes at: aKey put: aValue ].
+	aStyleSheet substyles keysAndValuesDo: [ :aKey :aSubStyleSheet | aKey == #default ifFalse: [ newStyleSheet substyles at: aKey put: aSubStyleSheet copy ] ].
 	newStyleSheet substyles at: #default put: newStyleSheet.
 	^ newStyleSheet
 ]

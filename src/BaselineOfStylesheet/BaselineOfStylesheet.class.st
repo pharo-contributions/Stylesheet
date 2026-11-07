@@ -7,24 +7,25 @@ Class {
 
 { #category : 'baselines' }
 BaselineOfStylesheet >> baseline: spec [
+
 	<baseline>
-	spec
-		for: #common
-		do: [
+	spec for: #common do: [
+		
+			self pharoBackwardCompatibility: spec.
+			
 			"Packages"
 			spec
 				package: 'Stylesheet-Core';
-				package: 'Stylesheet-Tests' with: [ spec requires: #('Stylesheet-Core') ].
+				package: 'Stylesheet-Tests' with: [ spec requires: #( 'Stylesheet-Core' 'PharoBackwardCompatibility') ].
 
 			"Groups"
 			spec
-				group: 'core' with: #('Stylesheet-Core');
-				group: 'tests' with: #('Stylesheet-Tests') ]
+				group: 'core' with: #( 'Stylesheet-Core' );
+				group: 'tests' with: #( 'Stylesheet-Tests' ) ]
 ]
 
-{ #category : 'accessing' }
-BaselineOfStylesheet >> projectClass [
-	^ [ self class environment at: #MetacelloCypressBaselineProject ]
-		on: NotFound
-		do: [ super projectClass ]
+{ #category : 'dependencies' }
+BaselineOfStylesheet >> pharoBackwardCompatibility: spec [
+
+	spec baseline: 'PharoBackwardCompatibility' with: [ spec repository: 'github://jecisc/PharoBackwardCompatibility:v1.x.x/src' ]
 ]
