@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfStylesheet,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfStylesheet
+	#name : 'BaselineOfStylesheet',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfStylesheet',
+	#package : 'BaselineOfStylesheet'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfStylesheet >> baseline: spec [
 	<baseline>
 	spec
@@ -21,7 +22,7 @@ BaselineOfStylesheet >> baseline: spec [
 				group: 'tests' with: #('Stylesheet-Tests') ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfStylesheet >> projectClass [
 	^ [ self class environment at: #MetacelloCypressBaselineProject ]
 		on: NotFound
