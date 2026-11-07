@@ -38,16 +38,26 @@ TStyledElement >> buildCompositeStyleSheetFrom: aStyleSheet [
 				ifAbsent: [ returnedStyleSheet ] ]) + self styleSheet	"the stylesheet of the element is always the prioritary one"
 ]
 
+{ #category : 'private' }
+TStyledElement >> computeEffectiveStyleSheet [
+
+	^ self buildCompositeStyleSheetFrom: (self parent
+			   ifNil: [ self styleSheetClass new ]
+			   ifNotNil: [ self parent effectiveStyleSheet ])
+]
+
 { #category : 'style' }
 TStyledElement >> defaultStyle [
 	^ self  explicitRequirement
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'styling' }
 TStyledElement >> effectiveStyleSheet [
-	^ self
-		buildCompositeStyleSheetFrom:
-			(self parent ifNil: [ self styleSheetClass new ] ifNotNil: [ self parent effectiveStyleSheet ])
+	"The style sheet which applies to the receiver: the one of its parent, then the ones of its styles, then its own. Inside EffectiveStyleSheetCache class>>#during: it is computed once for each element, so that the elements of a tree do not merge again the style sheets of their parents"
+
+	^ EffectiveStyleSheetCache value
+		  ifNil: [ self computeEffectiveStyleSheet ]
+		  ifNotNil: [ :cache | cache at: self ifAbsentPut: [ self computeEffectiveStyleSheet ] ]
 ]
 
 { #category : 'initialization' }
@@ -62,7 +72,7 @@ TStyledElement >> parent [
 	^ self  explicitRequirement
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'accessing' }
 TStyledElement >> referencedElement [
 	^ self
 ]
